@@ -1,7 +1,7 @@
-export const REMOVE_REQUESTED = 'counter/REMOVE_REQUESTED'
-export const REMOVE = 'counter/REMOVE'
-export const UPDATE_REQUESTED = 'counter/UPDATE_REQUESTED'
-export const UPDATE = 'counter/UPDATE'
+export const REMOVE_REQUESTED = 'authors/REMOVE_REQUESTED'
+export const REMOVE = 'authors/REMOVE'
+export const UPDATE_REQUESTED = 'authors/UPDATE_REQUESTED'
+export const UPDATE = 'authors/UPDATE'
 
 const initialState = {
   list: [
