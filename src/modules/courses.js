@@ -5,8 +5,20 @@ export const UPDATE = 'courses/UPDATE'
 
 const initialState = {
   list: [
-    { name: 'Michael Ozoemena', id: 1234 },
-    { name: 'Cory House', id: 2345 }
+    {
+      id: 1234,
+      title: 'React Redux',
+      author: 'Cory House',
+      category: 'Software Development',
+      length: '2h 56s'
+    },
+    {
+      id: 2345,
+      title: 'In-depth JavaScript',
+      author: 'Michael Ozoemena',
+      category: 'Software Development',
+      length: '5h 39s'
+    }
   ],
   isUpdating: false,
   isRemoving: false
