@@ -23,9 +23,9 @@ class CoursesPage extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.authors && (
+              {this.props.courses && (
                 <CoursesList
-                  courses={this.props.authors}
+                  courses={this.props.courses}
                   removeHandler={this.props.removeAsync}
                 />
               )}
