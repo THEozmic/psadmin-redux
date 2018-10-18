@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import toastr from 'toastr'
 import CoursesList from './CoursesList'
 
 import { removeAsync } from '../../modules/courses'
 
 class CoursesPage extends Component {
+  handleRemove = id => {
+    toastr.success('Deleted')
+    this.props.removeAsync(id)
+  }
+
   render = () => {
     return (
       <div className="p-5">
@@ -26,7 +32,7 @@ class CoursesPage extends Component {
               {this.props.courses && (
                 <CoursesList
                   courses={this.props.courses}
-                  removeHandler={this.props.removeAsync}
+                  removeHandler={this.handleRemove}
                 />
               )}
             </tbody>

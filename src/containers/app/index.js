@@ -1,8 +1,5 @@
 import React from 'react'
-import { Route, NavLink, Redirect } from 'react-router-dom'
-import AuthorsPage from '../authors/AuthorsPage'
-import CoursesPage from '../courses/CoursesPage'
-import About from '../about'
+import { NavLink } from 'react-router-dom'
 
 const App = () => (
   <div>
@@ -20,11 +17,6 @@ const App = () => (
         </li>
       </ul>
     </nav>
-    <main>
-      <Route exact path="/authors" component={AuthorsPage} />
-      <Route exact path="/courses" component={CoursesPage} />
-      <Redirect from="/" to="/authors" />
-    </main>
   </div>
 )
 

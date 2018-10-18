@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import toastr from 'toastr'
 import AuthorsList from './AuthorsList'
 
 import { removeAsync, updateAsync } from '../../modules/authors'
 
 class AuthorsPage extends Component {
+  handleRemove = id => {
+    toastr.success('Deleted')
+    this.props.removeAsync(id)
+  }
+
   render = () => {
     return (
       <div className="p-5">
@@ -25,7 +31,7 @@ class AuthorsPage extends Component {
                 <AuthorsList
                   authors={this.props.authors}
                   updateHandler={this.props.updateAsync}
-                  removeHandler={this.props.removeAsync}
+                  removeHandler={this.handleRemove}
                 />
               )}
             </tbody>

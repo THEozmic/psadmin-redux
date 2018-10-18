@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     case REMOVE:
       return {
         ...state,
-        list: state.list.filter(item => item.id != action.data.id),
+        list: state.list.filter(item => item.id !== action.data.id),
         isRemoving: !state.isRemoving
       }
 
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: state.list.map(item => {
-          if (item.id == action.data.list.id) {
+          if (item.id === action.data.list.id) {
             return action.data.list
           } else {
             return item

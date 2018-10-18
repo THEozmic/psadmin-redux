@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import InputDropdown from './InputDropdown'
 
 const CoursesList = ({ courses, removeHandler }) => {
   return (

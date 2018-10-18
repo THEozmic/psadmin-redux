@@ -1,5 +1,5 @@
 import React from 'react'
-import InputText from './InputText'
+import InputText from '../common/InputText'
 
 const AuthorsList = ({ authors, updateHandler, removeHandler }) => {
   return (
@@ -12,7 +12,9 @@ const AuthorsList = ({ authors, updateHandler, removeHandler }) => {
               <InputText
                 value={author.name}
                 id={author.id}
-                handleChange={updateHandler}
+                handleChange={({ value }) =>
+                  updateHandler({ name: value, id: author.id })
+                }
               />
             </span>
           </td>

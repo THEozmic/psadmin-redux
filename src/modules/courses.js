@@ -2,24 +2,40 @@ export const REMOVE_REQUESTED = 'courses/REMOVE_REQUESTED'
 export const REMOVE = 'courses/REMOVE'
 export const UPDATE_REQUESTED = 'courses/UPDATE_REQUESTED'
 export const UPDATE = 'courses/UPDATE'
+export const GET_COURSE = 'courses/GET_COURSE'
 
 const initialState = {
   list: [
     {
-      id: 1234,
-      title: 'React Redux',
+      id: 'clean-code',
+      title: 'Clean Code: Writing Code for Humans',
       author: 'Cory House',
-      category: 'Software Development',
-      length: '2h 56s'
+      length: '3:10',
+      category: 'Software Practices'
     },
     {
-      id: 2345,
-      title: 'In-depth JavaScript',
-      author: 'Michael Ozoemena',
-      category: 'Software Development',
-      length: '5h 39s'
+      id: 'architecture',
+      title: 'Architecting Applications for the Real World',
+      author: 'Cory House',
+      length: '2:52',
+      category: 'Software Architecture'
+    },
+    {
+      id: 'career-reboot-for-developer-mind',
+      title: 'Becoming an Outlier: Reprogramming the Developer Mind',
+      author: 'Cory House',
+      length: '2:30',
+      category: 'Career'
+    },
+    {
+      id: 'web-components-shadow-dom',
+      title: 'Web Component Fundamentals',
+      author: 'Cory House',
+      length: '5:10',
+      category: 'HTML5'
     }
   ],
+  course: {},
   isUpdating: false,
   isRemoving: false
 }
@@ -35,7 +51,7 @@ export default (state = initialState, action) => {
     case REMOVE:
       return {
         ...state,
-        list: state.list.filter(item => item.id != action.data.id),
+        list: state.list.filter(item => item.id !== action.data.id),
         isRemoving: !state.isRemoving
       }
 
@@ -49,17 +65,35 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: state.list.map(item => {
-          if (item.id == action.data.list.id) {
-            return action.data.list
+          if (item.id === action.data.changes.id) {
+            return { ...item, ...action.data.changes }
           } else {
             return item
           }
         }),
+        selectedCourse: { ...state.selectedCourse, ...action.data.changes },
         isUpdating: !state.isRemoving
+      }
+
+    case GET_COURSE:
+      return {
+        ...state,
+        selectedCourse: action.data.selectedCourse
       }
 
     default:
       return state
+  }
+}
+
+export const getCourse = id => {
+  return dispatch => {
+    dispatch({
+      type: GET_COURSE,
+      data: {
+        selectedCourse: initialState.list.find(item => item.id === id)
+      }
+    })
   }
 }
 
@@ -81,7 +115,7 @@ export const removeAsync = id => {
   }
 }
 
-export const updateAsync = ({ name, id }) => {
+export const updateAsync = fields => {
   return dispatch => {
     dispatch({
       type: UPDATE_REQUESTED
@@ -91,10 +125,7 @@ export const updateAsync = ({ name, id }) => {
       dispatch({
         type: UPDATE,
         data: {
-          list: {
-            name,
-            id
-          },
+          changes: fields,
           isUpdating: false
         }
       })

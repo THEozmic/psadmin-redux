@@ -11,8 +11,7 @@ class InputText extends Component {
     })
 
     this.props.handleChange({
-      name: event.target.value,
-      id: event.target.id
+      value: event.target.value
     })
   }
 
@@ -21,7 +20,7 @@ class InputText extends Component {
       <input
         className="form-control"
         value={this.state.value}
-        id={this.props.id}
+        id={this.props.id || null}
         onChange={this.handleChange}
       />
     )
