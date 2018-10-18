@@ -1,17 +1,25 @@
 import React from 'react'
+import InputText from './InputText'
 
-const AuthorsList = ({ authors }) => {
+const AuthorsList = ({ authors, updateHandler, removeHandler }) => {
   return (
     <React.Fragment>
-      {this.props.authors.map(author => (
+      {authors.map(author => (
         <tr key={author.id}>
           <td>{author.id}</td>
-          <td>{author.name}</td>
           <td>
-            <button onClick={() => this.props.updateAuthor(author.id)}>
-              Edit
-            </button>
-            <button onClick={() => this.props.deleteAuthor(author.id)}>
+            <span className="pt-2 pb-2">
+              <InputText
+                value={author.name}
+                id={author.id}
+                handleChange={updateHandler}
+              />
+            </span>
+          </td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => removeHandler(author.id)}>
               Delete
             </button>
           </td>
