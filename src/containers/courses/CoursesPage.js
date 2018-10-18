@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CoursesList from './CoursesList'
 
-import { removeAsync, updateAsync } from '../../modules/courses'
+import { removeAsync } from '../../modules/courses'
 
 class CoursesPage extends Component {
   render = () => {
