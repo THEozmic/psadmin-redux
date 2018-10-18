@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import InputDropdown from './InputDropdown'
 
 const CoursesList = ({ courses, removeHandler }) => {
@@ -11,6 +12,9 @@ const CoursesList = ({ courses, removeHandler }) => {
           <td>{course.category}</td>
           <td>{course.length}</td>
           <td>
+            <Link className="btn btn-primary" to={`courses/edit/${course.id}`}>
+              Update
+            </Link>{' '}
             <button
               className="btn btn-danger"
               onClick={() => removeHandler(course.id)}>
