@@ -13,8 +13,12 @@ class UpdateCourse extends Component {
     updated: false
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
+    console.log(this.props)
     this.props.getCourse(this.props.match.params.id)
+    if (!this.props.selectedCourse) {
+      return false
+    }
   }
 
   handleChange = field => {
@@ -42,7 +46,7 @@ class UpdateCourse extends Component {
     return (
       <div className="p-5">
         {this.state.updated && <Redirect to="/courses" />}
-        {this.props.selectedCourse &&
+        {selectedCourse &&
           this.props.authors.list && (
             <React.Fragment>
               <h2>Update Course ({selectedCourse.title})</h2>
